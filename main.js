@@ -1,56 +1,49 @@
-// ====== MÚSICA ======
+/* ================= MUSICA ================= */
 const audio = document.getElementById("audio");
 let reproduciendo = false;
 
 function toggleMusic() {
-  if (reproduciendo) {
-    audio.pause();
-  } else {
+  if (!reproduciendo) {
     audio.play();
+    reproduciendo = true;
+  } else {
+    audio.pause();
+    reproduciendo = false;
   }
-  reproduciendo = !reproduciendo;
 }
 
-// ====== CUENTA REGRESIVA ======
-const evento = new Date("March 14, 2026 15:00:00").getTime();
-const countdown = document.getElementById("countdown");
+/* ================= CUENTA ATRÁS ================= */
+const countdownEl = document.getElementById("countdown");
 
-setInterval(() => {
+// FECHA DEL EVENTO (IMPORTANTE: mes empieza en 0)
+const fechaEvento = new Date(2026, 2, 14, 15, 0, 0); 
+// 14 marzo 2026 - 3:00 PM
+
+function actualizarCuenta() {
   const ahora = new Date().getTime();
-  const diferencia = evento - ahora;
+  const distancia = fechaEvento.getTime() - ahora;
 
-  if (diferencia <= 0) {
-    countdown.innerHTML = "🎉 ¡Hoy es el gran día!";
+  if (distancia <= 0) {
+    countdownEl.innerHTML = "🎉 ¡Hoy es el gran día! 🎉";
     return;
   }
 
-  const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-  const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
-  const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+  const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+  const horas = Math.floor(
+    (distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutos = Math.floor(
+    (distancia % (1000 * 60 * 60)) / (1000 * 60)
+  );
+  const segundos = Math.floor(
+    (distancia % (1000 * 60)) / 1000
+  );
 
-  countdown.innerHTML = `⏳ Faltan ${dias} días ${horas}h ${minutos}m`;
-}, 1000);
-
-// ====== CONFIRMACIÓN WHATSAPP ======
-function confirmarAsistencia(tipo) {
-
-  // CAMBIA ESTOS NÚMEROS (con código de país)
-  const telefonoMama = "523331751485"; // Jazmín
-  const telefonoPapa = "523314449854"; // Luis
-
-  let telefono = "";
-  let mensaje = "";
-
-  if (tipo === "mama") {
-    telefono = telefonoMama;
-    mensaje = "Hola Jazmín 💗, confirmo mi asistencia al baby shower de Meztli 🐰✨";
-  }
-
-  if (tipo === "papa") {
-    telefono = telefonoPapa;
-    mensaje = "Hola Luis 💙, confirmo mi asistencia al baby shower de Meztli 🐰✨";
-  }
-
-  const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, "_blank");
+  countdownEl.innerHTML = `
+    ⏳ Faltan ${dias} días ${horas}h ${minutos}m ${segundos}s
+  `;
 }
+
+// ⏱️ ACTUALIZA CADA SEGUNDO (ESTO ES LO QUE FALTABA)
+actualizarCuenta();
+setInterval(actualizarCuenta, 1000);
