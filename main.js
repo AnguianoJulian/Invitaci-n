@@ -1,49 +1,68 @@
-/* ================= MUSICA ================= */
+/* ===============================
+   AUDIO
+================================ */
 const audio = document.getElementById("audio");
-let reproduciendo = false;
+let isPlaying = false;
 
 function toggleMusic() {
-  if (!reproduciendo) {
+  if (!isPlaying) {
     audio.play();
-    reproduciendo = true;
+    isPlaying = true;
   } else {
     audio.pause();
-    reproduciendo = false;
+    isPlaying = false;
   }
 }
 
-/* ================= CUENTA ATRÁS ================= */
-const countdownEl = document.getElementById("countdown");
+/* ===============================
+   CUENTA REGRESIVA
+================================ */
+const countdown = document.getElementById("countdown");
 
-// FECHA DEL EVENTO (IMPORTANTE: mes empieza en 0)
-const fechaEvento = new Date(2026, 2, 14, 15, 0, 0); 
-// 14 marzo 2026 - 3:00 PM
+// FECHA DEL EVENTO (AÑO, MES-1, DÍA, HORA, MIN)
+const eventDate = new Date(2026, 2, 14, 15, 0, 0);
 
-function actualizarCuenta() {
-  const ahora = new Date().getTime();
-  const distancia = fechaEvento.getTime() - ahora;
+function updateCountdown() {
+  const now = new Date();
+  const diff = eventDate - now;
 
-  if (distancia <= 0) {
-    countdownEl.innerHTML = "🎉 ¡Hoy es el gran día! 🎉";
+  if (diff <= 0) {
+    countdown.innerHTML = "🎉 ¡Hoy es el gran día! 🎉";
     return;
   }
 
-  const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-  const horas = Math.floor(
-    (distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
-  const minutos = Math.floor(
-    (distancia % (1000 * 60 * 60)) / (1000 * 60)
-  );
-  const segundos = Math.floor(
-    (distancia % (1000 * 60)) / 1000
-  );
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
 
-  countdownEl.innerHTML = `
-    ⏳ Faltan ${dias} días ${horas}h ${minutos}m ${segundos}s
+  countdown.innerHTML = `
+    ⏳ Faltan ${days} días ${hours}h ${minutes}m ${seconds}s
   `;
 }
 
-// ⏱️ ACTUALIZA CADA SEGUNDO (ESTO ES LO QUE FALTABA)
-actualizarCuenta();
-setInterval(actualizarCuenta, 1000);
+// ACTUALIZA CADA SEGUNDO
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+/* ===============================
+   CONFIRMACIÓN WHATSAPP
+================================ */
+
+// CAMBIA LOS NÚMEROS 👇 (con LADA +52)
+const telefonoMama = "523331751485";
+const telefonoPapa = "523314449854";
+
+function confirmarMama() {
+  const mensaje = encodeURIComponent(
+    "Hola 😊 Confirmo mi asistencia al Baby Shower de Meztli Jazmín 🐰💗"
+  );
+  window.open(`https://wa.me/${telefonoMama}?text=${mensaje}`, "_blank");
+}
+
+function confirmarPapa() {
+  const mensaje = encodeURIComponent(
+    "Hola 😊 Confirmo mi asistencia al Baby Shower de Meztli Jazmín 🐰💗"
+  );
+  window.open(`https://wa.me/${telefonoPapa}?text=${mensaje}`, "_blank");
+}
