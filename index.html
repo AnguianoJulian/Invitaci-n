@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Pacifico&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <title>Baby Shower | Conejitos</title>
+</head>
+
+<body>
+
+<!-- AUDIO -->
+<audio id="audio" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <div class="bunny b1">🐰</div>
+  <div class="bunny b2">🐇</div>
+  <div class="bunny b3">🐰</div>
+
+  <h1 class="reveal r1">Baby Shower</h1>
+  <h2 class="reveal r2">Papás: <strong>Jazmín & Luis</strong></h2>
+
+  <div class="bebe reveal r3">
+    Esperando a nuestra bebé<br>
+    ✨ Meztli Jazmín ✨
+    <br>
+    <img class="img-bb" src="img/img_bb.jpeg" alt="Bebé">
+  </div>
+
+  <div class="info reveal r3">
+    <p>📅 14 de marzo de 2026</p>
+    <p>⏰ 3:00 PM</p>
+    <p>📍 Felipe González Velázquez 852</p>
+  </div>
+
+  <button onclick="toggleMusic()">🎵 Música</button>
+
+  <div class="countdown" id="countdown"></div>
+
+  <!-- RECEPCIÓN -->
+  <div class="recepcion reveal r3">
+    <h3>📍 Recepción</h3>
+
+    <iframe
+      src="https://www.google.com/maps?q=Felipe%20Gonzalez%20Velazquez%20852&output=embed"
+      loading="lazy">
+    </iframe>
+
+    <a
+      href="https://www.google.com/maps?q=Felipe+Gonzalez+Velazquez+852"
+      target="_blank"
+      class="map-btn">
+      🧭 Abrir en Google Maps
+    </a>
+  </div>
+
+  <!-- CONFIRMACIÓN -->
+<div class="confirmacion reveal r3">
+  <h3>💌 Confirma tu asistencia</h3>
+
+  <button class="confirm-btn mama" onclick="confirmarAsistencia('mama')">
+    👩‍🍼 Confirmar con Mamá
+  </button>
+
+  <button class="confirm-btn papa" onclick="confirmarAsistencia('papa')">
+    👨‍🍼 Confirmar con Papá
+  </button>
+</div>
+
+
+  <footer>Con mucho amor 💗🐰</footer>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
