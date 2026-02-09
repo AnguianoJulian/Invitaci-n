@@ -1,68 +1,59 @@
-/* ===============================
-   AUDIO
-================================ */
-const audio = document.getElementById("audio");
-let isPlaying = false;
+document.addEventListener("DOMContentLoaded", () => {
 
-function toggleMusic() {
-  if (!isPlaying) {
-    audio.play();
-    isPlaying = true;
-  } else {
-    audio.pause();
-    isPlaying = false;
+  const audio = document.getElementById("audio");
+  let isPlaying = false;
+
+  window.toggleMusic = function () {
+    if (!isPlaying) {
+      audio.play().catch(() => {});
+      isPlaying = true;
+    } else {
+      audio.pause();
+      isPlaying = false;
+    }
+  };
+
+  const countdown = document.getElementById("countdown");
+  const eventDate = new Date(2026, 2, 14, 15, 0, 0);
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = eventDate - now;
+
+    if (diff <= 0) {
+      countdown.textContent = "🎉 ¡Hoy es el gran día! 🎉";
+      return;
+    }
+
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff / 3600000) % 24;
+    const m = Math.floor(diff / 60000) % 60;
+    const s = Math.floor(diff / 1000) % 60;
+
+    countdown.textContent =
+      `⏳ Faltan ${d} días ${h}h ${m}m ${s}s`;
   }
-}
 
-/* ===============================
-   CUENTA REGRESIVA
-================================ */
-const countdown = document.getElementById("countdown");
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 
-// FECHA DEL EVENTO (AÑO, MES-1, DÍA, HORA, MIN)
-const eventDate = new Date(2026, 2, 14, 15, 0, 0);
+  const telefonoMama = "523331751485";
+  const telefonoPapa = "523314449854";
 
-function updateCountdown() {
-  const now = new Date();
-  const diff = eventDate - now;
+  window.confirmarMama = function () {
+    window.open(
+      `https://wa.me/${telefonoMama}?text=` +
+      encodeURIComponent("Hola 😊 Confirmo mi asistencia al Baby Shower de Meztli Jazmín 🐰💗"),
+      "_blank"
+    );
+  };
 
-  if (diff <= 0) {
-    countdown.innerHTML = "🎉 ¡Hoy es el gran día! 🎉";
-    return;
-  }
+  window.confirmarPapa = function () {
+    window.open(
+      `https://wa.me/${telefonoPapa}?text=` +
+      encodeURIComponent("Hola 😊 Confirmo mi asistencia al Baby Shower de Meztli Jazmín 🐰💗"),
+      "_blank"
+    );
+  };
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  countdown.innerHTML = `
-    ⏳ Faltan ${days} días ${hours}h ${minutes}m ${seconds}s
-  `;
-}
-
-// ACTUALIZA CADA SEGUNDO
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-/* ===============================
-   CONFIRMACIÓN WHATSAPP
-================================ */
-
-// CAMBIA LOS NÚMEROS 👇 (con LADA +52)
-const telefonoMama = "523331751485";
-const telefonoPapa = "523314449854";
-
-function confirmarMama() {
-  const mensaje = encodeURIComponent(
-    "Hola 😊 Confirmo mi asistencia al Baby Shower de Meztli Jazmín 🐰💗"
-  );
-  window.open(`https://wa.me/${telefonoMama}?text=${mensaje}`, "_blank");
-}
-
-function confirmarPapa() {
-  const mensaje = encodeURIComponent(
-    "Hola 😊 Confirmo mi asistencia al Baby Shower de Meztli Jazmín 🐰💗"
-  );
-  window.open(`https://wa.me/${telefonoPapa}?text=${mensaje}`, "_blank");
-}
+});
