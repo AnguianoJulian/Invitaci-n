@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
      📲 CONFIRMACIONES WHATSAPP
   ============================== */
 
-  const telefonoMama = "523331751485";
-  const telefonoPapa = "523314449854";
+  const telefonoMama = "523317143479";
+  const telefonoPapa = "523314821153";
 
   window.confirmarMama = function () {
     const mensaje = "Hola 😊 Confirmo mi asistencia al Baby Shower de Meztli Jazmín 🐰💗";
