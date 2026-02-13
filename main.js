@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 🔥 Iniciar música al primer toque en cualquier parte
   function iniciarMusica() {
     if (!musicStarted) {
-      audio.currentTime = 4; // Empieza en el segundo 4
+      audio.currentTime = 11; // Empieza en el segundo 4
       audio.play().then(() => {
         icono.classList.remove("bi-play-circle-fill");
         icono.classList.add("bi-pause-circle-fill");
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const telefonoPapa = "523314821153";
 
   window.confirmarMama = function () {
-    const mensaje = "Hola 😊 Confirmo mi asistencia al Baby Shower de Meztli Jazmín 🐰💗";
+    const mensaje = "Hola 😊 Confirmo mi asistencia al Baby Shower de Metztli Jazmín 🐰💗";
     window.open(
       `https://wa.me/${telefonoMama}?text=${encodeURIComponent(mensaje)}`,
       "_blank"

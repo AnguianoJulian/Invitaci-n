@@ -71,9 +71,9 @@ body{
 }
 
 .parrafo-honor p{
-  font-family: "SN Pro";
+  font-family: 'Belleza', sans-serif;
   text-align: center;
-  font-size: 15px;
+  font-size: 20px;
   color: #fb6f92;
 }
 
@@ -120,7 +120,8 @@ body{
 
 .contenedor-datos-bb-mensaje p{
   text-align: center;
-  font-family: "SN Pro";
+  font-family: 'Belleza', sans-serif;
+  font-size: 20px;
   color: #fb6f92;
 }
 
@@ -318,7 +319,7 @@ body{
 }
 
 .btn-asistencia{
-  width: 190px;
+  width: 210px;
   margin-top: 20px;
   background-color: #fd7d9d;
   border: none;
@@ -327,4 +328,8 @@ body{
   font-size: 17px;
   border-radius: 80px;
   color: #fadae0;
+}
+
+.bi-whatsapp{
+  font-size: 19px;
 }
