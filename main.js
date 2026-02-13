@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ===============================
-     🎵 MÚSICA
+    🎵 MÚSICA
   ============================== */
 
   const audio = document.getElementById("audio");
@@ -59,8 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const minutos = Math.floor((diff / (1000 * 60)) % 60);
     const segundos = Math.floor((diff / 1000) % 60);
 
-    countdown.textContent =
-      `Faltan ${dias} días ${horas}h ${minutos}m ${segundos}s`;
+    countdown.innerHTML =
+      ` <p class="box">${dias}</p>
+        <p class="box">${horas}</p>
+        <p class="box">${minutos}</p>
+        <p class="box">${segundos}</p>`;
   }
 
   setInterval(updateCountdown, 1000);
@@ -68,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ===============================
-     📲 CONFIRMACIONES WHATSAPP
+    📲 CONFIRMACIONES WHATSAPP
   ============================== */
 
   const telefonoMama = "523317143479";
